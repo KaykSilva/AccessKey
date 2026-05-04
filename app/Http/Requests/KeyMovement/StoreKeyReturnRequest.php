@@ -14,6 +14,7 @@ class StoreKeyReturnRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'delivered_by_user_id' => ['nullable', 'exists:users,id'],
             'return_notes' => ['nullable', 'string'],
         ];
     }
