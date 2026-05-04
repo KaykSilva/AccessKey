@@ -14,11 +14,14 @@ use App\Http\Controllers\KeyPerson\KeyPersonUpdateController;
 use App\Http\Controllers\KeyReservation\KeyReservationStoreController;
 use App\Http\Controllers\KeyReservation\KeyReservationUpdateController;
 use App\Http\Controllers\KeyReservation\KeyReservationDestroyController;
-
+use App\Http\Controllers\KeyResponsible\KeyResponsibleDestroyController;
+use App\Http\Controllers\KeyResponsible\KeyResponsibleIndexController;
+use App\Http\Controllers\KeyResponsible\KeyResponsibleStoreController;
+use App\Http\Controllers\KeyResponsible\KeyResponsibleUpdateController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
-
+    
     Route::get('/keys', KeyIndexController::class)->name('keys.index');
     Route::post('/keys', KeyStoreController::class)->name('keys.store');
     Route::put('/keys/{key}', KeyUpdateController::class)->name('keys.update');
@@ -35,4 +38,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/people', KeyPersonStoreController::class)->name('people.store');
     Route::put('/people/{keyPerson}', KeyPersonUpdateController::class)->name('people.update');
     Route::delete('/people/{keyPerson}', KeyPersonDestroyController::class)->name('people.destroy');
+
+    Route::get('/responsibles', KeyResponsibleIndexController::class)->name('responsibles.index');
+    Route::post('/responsibles', KeyResponsibleStoreController::class)->name('responsibles.store');
+    Route::put('/responsibles/{keyResponsible}', KeyResponsibleUpdateController::class)->name('responsibles.update');
+    Route::delete('/responsibles/{keyResponsible}', KeyResponsibleDestroyController::class)->name('responsibles.destroy');
 });
