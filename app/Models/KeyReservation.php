@@ -5,24 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class KeyMovement extends Model
+class KeyReservation extends Model
 {
     protected $fillable = [
         'key_id',
         'person_id',
-        'taken_by_user_id',
-        'delivered_by_user_id',
-        'received_by_user_id',
-        'taken_at',
-        'returned_at',
-        'take_notes',
-        'return_notes',
+        'requested_by_user_id',
+        'start_at',
+        'end_at',
+        'period',
+        'reason',
         'status',
     ];
 
     protected $casts = [
-        'taken_at' => 'datetime',
-        'returned_at' => 'datetime',
+        'start_at' => 'datetime',
+        'end_at' => 'datetime',
     ];
 
     public function key(): BelongsTo
@@ -35,18 +33,8 @@ class KeyMovement extends Model
         return $this->belongsTo(KeyPerson::class, 'person_id');
     }
 
-    public function takenByUser(): BelongsTo
+    public function requestedByUser(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'taken_by_user_id');
-    }
-
-    public function deliveredByUser(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'delivered_by_user_id');
-    }
-
-    public function receivedByUser(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'received_by_user_id');
+        return $this->belongsTo(User::class, 'requested_by_user_id');
     }
 }
